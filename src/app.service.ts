@@ -10,7 +10,9 @@ export class AppService {
     // url record will be stored
     let url = {
       destination: data.long_url, short_url
-    }
+    };
+
+    
 
     return url;
     
