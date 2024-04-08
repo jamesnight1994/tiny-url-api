@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 
-class MD5Utils {
+export default class MD5Utils {
     private static SHORT_URL_CHAR_SIZE: number = 7; // Define the size of the short URL
 
     // Method to convert a long URL to an MD5 hash
