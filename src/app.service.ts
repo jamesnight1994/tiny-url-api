@@ -31,32 +31,39 @@ export class AppService {
    * @returns 
    */
   async shortenUrl(data: ShortenUrlDto) {
-    const short_url = MD5Utils.generateRandomShortUrl(data.url);
-    const domain = process.env.APP_DOMAIN || 'http://localhost:3000';
+    try {
+      const short_url = MD5Utils.generateRandomShortUrl(data.url);
+      const domain = process.env.APP_DOMAIN || 'http://localhost:3000';
 
-    // Check if the link is valid
-    if (!data.url.startsWith('http://') && !data.url.startsWith('https://')) {
-      throw new HttpException('Invalid URL format', HttpStatus.BAD_REQUEST);
-    }
+      // Check if the link is valid
+      if (!data.url.startsWith('http://') && !data.url.startsWith('https://')) {
+        throw new HttpException('Invalid URL format', HttpStatus.BAD_REQUEST);
+      }
 
-    const url = await this.prismaService.url.findFirst({where:{
-      destination: data.url
-    }});
-    
-    if(!url){
-      // if not found in records, store short url and destination 
-      await this.prismaService.url.create({
-        data: {
-          destination: data.url,
-          short_url
+      const url = await this.prismaService.url.findFirst({
+        where: {
+          destination: data.url
         }
       });
 
-    }
+      if (!url) {
+        // if not found in records, store short url and destination 
+        await this.prismaService.url.create({
+          data: {
+            destination: data.url,
+            short_url
+          }
+        });
 
-    return {
-      short_url: `${domain}/${short_url}`
-    };
+      }
+
+      return {
+        short_url: `${domain}/${short_url}`
+      };
+    } catch (error) {
+      console.error(error.message);
+      return error.message
+    }
 
   }
 }
