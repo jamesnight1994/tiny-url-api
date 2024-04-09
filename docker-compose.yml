@@ -10,7 +10,7 @@ services:
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
 
-  nestjs-app:
+  app:
     image: url-shortener
     build:
       context: .
