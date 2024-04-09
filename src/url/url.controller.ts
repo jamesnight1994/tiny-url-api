@@ -3,10 +3,10 @@ import { UrlService } from './url.service';
 import { Response } from 'express';
 import { UrlDto } from './url.dto';
 
-@Controller('url-shortener')
+@Controller('url')
 export class UrlController {
     constructor(private readonly urlService: UrlService) {}
-    @Post('/shorten-url')
+    @Post('/shorten')
     shortenUrl(@Body() data: UrlDto) {
         return this.urlService.shortenUrl(data);
     }
