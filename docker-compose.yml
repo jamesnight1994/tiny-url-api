@@ -8,10 +8,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+      - "5555:5555"
     env_file:
       - .env
     volumes:
       - ./:/usr/src/app
+    command: >
+      sh -c "npm run start:prod & npx prisma studio"
 
   postgres:
     image: postgres:latest
