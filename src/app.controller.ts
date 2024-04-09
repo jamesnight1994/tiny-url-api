@@ -3,10 +3,11 @@ import { AppService } from './app.service';
 import { ShortenUrlDto } from './app.dto';
 import { PrismaService } from './prisma/prisma.service';
 import { Response } from 'express';
+import { ApiBody } from '@nestjs/swagger';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService, private readonly prismaService: PrismaService) {}
+  constructor(private readonly appService: AppService) {}
 
   
   @Post('/shorten-url')

@@ -19,7 +19,7 @@ datasource db {
 model Url {
   id        Int      @id @default(autoincrement())
   destination  String
-  short_url String
+  short_url String @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
