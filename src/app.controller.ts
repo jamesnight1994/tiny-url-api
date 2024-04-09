@@ -7,6 +7,12 @@ import { ApiExcludeEndpoint } from '@nestjs/swagger';
 export class AppController {
     constructor(private readonly urlService: UrlService) { }
 
+    /**
+     * This enpoint accepts the shortend url and redirects the user to the destination url
+     * @param shortUrl 
+     * @param res 
+     * @returns 
+     */
     @ApiExcludeEndpoint()
     @Get('/:short_url')
     async getShortUrl(@Param('short_url') shortUrl: string, @Res() res: Response) {

@@ -56,6 +56,7 @@ export class UrlService {
 
             }
 
+            // return the host+path
             return `${domain}/${short_url}`
         } catch (error) {
             console.error(error.message);

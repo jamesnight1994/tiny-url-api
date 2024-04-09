@@ -1,73 +1,55 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# URL Shortener Application Setup
+[Live Demo](https://tiny-url-api.vercel.app/)
+## Prerequisites
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Before setting up the application, make sure you have the following installed:
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Docker
+- Node.js
 
 ## Installation
 
-```bash
-$ npm install
-```
+1. **Clone the repository:**
 
-## Running the app
+    ```bash
+    git clone https://github.com/jamesnight1994/tiny-url-api.git
+    ```
 
-```bash
-# development
-$ npm run start
+2. **Navigate to the project directory:**
 
-# watch mode
-$ npm run start:dev
+    ```bash
+    cd tiny-url-api
+    ```
 
-# production mode
-$ npm run start:prod
-```
+3. **Create a `.env` file at the root of the project folder with the following contents:**
 
-## Test
+    ```plaintext
+    APP_DOMAIN=http://localhost:3000
+    DATABASE_URL="postgresql://a24:password@postgres:5432/url_shortener?schema=public"
+    POSTGRES_DB=url_shortener
+    POSTGRES_USER=a24
+    POSTGRES_PASSWORD=password
+    ```
 
-```bash
-# unit tests
-$ npm run test
+4. **Start the PostgreSQL server:**
 
-# e2e tests
-$ npm run test:e2e
+    ```bash
+    docker-compose up postgres
+    ```
 
-# test coverage
-$ npm run test:cov
-```
+5. **Start the Node.js application:**
 
-## Support
+    ```bash
+    docker-compose up app
+    ```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+6. **Once both containers are up and running, navigate to the URL [http://localhost:3000/](http://localhost:3000/) in your web browser.**
 
-## Stay in touch
+## Usage
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- After setting up the application, you'll find a documented endpoint at `/url/shorten` which you can use to shorten URLs.
+- Paste the resulting response on your browser
 
-## License
+## Troubleshooting
 
-Nest is [MIT licensed](LICENSE).
+- If the application does not start successfully, try restarting the containers using Docker Desktop Application.
