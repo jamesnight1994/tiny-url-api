@@ -56,9 +56,7 @@ export class UrlService {
 
             }
 
-            return {
-                short_url: `${domain}/${short_url}`
-            };
+            return `${domain}/${short_url}`
         } catch (error) {
             console.error(error.message);
             return error.message
