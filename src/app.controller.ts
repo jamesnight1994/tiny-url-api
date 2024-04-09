@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
-import { UrlService } from './url-shortener/url.service';
+import { UrlService } from './url/url.service';
 import { Response } from 'express';
 
 @Controller()
