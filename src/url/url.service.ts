@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma.service';
 import MD5Utils from './MD5Utils';
 import { UrlDto } from './url.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class UrlService {
