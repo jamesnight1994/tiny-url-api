@@ -1,24 +1,14 @@
 import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
-import { AppService } from './app.service';
-import { ShortenUrlDto } from './app.dto';
-import { PrismaService } from './prisma/prisma.service';
+import { UrlService } from './url-shortener/url.service';
 import { Response } from 'express';
-import { ApiBody } from '@nestjs/swagger';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+    constructor(private readonly urlService: UrlService) { }
+    @Get('/:short_url')
+    async getShortUrl(@Param('short_url') shortUrl: string, @Res() res: Response) {
+        const destination = await this.urlService.getDestination(shortUrl);
 
-  
-  @Post('/shorten-url')
-  shortenUrl(@Body() data: ShortenUrlDto) {
-    return this.appService.shortenUrl(data);
-  }
-
-  @Get('/:short_url')
-  async getShortUrl(@Param('short_url') shortUrl: string, @Res() res: Response) {
-    const destination = await this.appService.getDestination(shortUrl);
-    
-    return res.redirect(destination);
-  }
+        return res.redirect(destination);
+    }
 }
