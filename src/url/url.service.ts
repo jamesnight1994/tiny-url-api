@@ -31,6 +31,7 @@ export class UrlService {
      */
     async shortenUrl(data: UrlDto) {
         try {
+            // generate short url
             const short_url = MD5Utils.generateRandomShortUrl(data.url);
             const domain = process.env.APP_DOMAIN || 'http://localhost:3000';
 
@@ -39,6 +40,7 @@ export class UrlService {
                 throw new HttpException('Invalid URL format', HttpStatus.BAD_REQUEST);
             }
 
+            // check if the destination/url submitted exists 
             const url = await this.prismaService.url.findFirst({
                 where: {
                     destination: data.url

@@ -10,7 +10,7 @@ export default class MD5Utils {
             const digest = crypto.createHash('md5');
             digest.update(longURL);
             const hash: Buffer = digest.digest();
-            
+
             // Create Hex String representation of the hash
             let hexString: string = '';
             for (const b of hash) {

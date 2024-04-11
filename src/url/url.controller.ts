@@ -6,8 +6,14 @@ import { UrlDto } from './url.dto';
 @Controller('url')
 export class UrlController {
     constructor(private readonly urlService: UrlService) {}
+    /**
+     * Redirect to destination
+     * @param data 
+     * @returns 
+     */
     @Post('/shorten')
     shortenUrl(@Body() data: UrlDto) {
+        // redirect the visitor to the destination url
         return this.urlService.shortenUrl(data);
     }
 }
